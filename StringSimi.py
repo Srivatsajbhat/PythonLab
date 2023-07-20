@@ -1,18 +1,16 @@
-import difflib
-def string_similarity(str1, str2):
-    result =  difflib.SequenceMatcher(a=str1.lower(), b=str2.lower())
-    return result.ratio()
-str1 = 'Python Exercises'
-str2 = 'Python Exercises'
-print("Original string:")
-print(str1)
-print(str2)
-print("Similarity between two said strings:")
-print(string_similarity(str1,str2))
-str1 = 'Python Exercises'
-str2 = 'Python Exercise'
-print("\nOriginal string:")
-print(str1)
-print(str2)
-print("Similarity between two said strings:")
-print(string_similarity(str1,str2))
+def similar(str1, str2):
+	str1 = str1 + ' ' * (len(str2) - len(str1))
+	str2 = str2 + ' ' * (len(str1) - len(str2))
+	return sum(1 if i == j else 0
+			for i, j in zip(str1, str2)) / float(len(str1))
+
+# Initializing strings
+test_string1 = 'Python Exerises'
+test_string2 = 'Python Exerises'
+
+# using naive method (sum() + zip())
+# similarity between strings
+res = similar(test_string1, test_string2)
+
+# printing the result
+print ("The similarity between 2 strings is : " + str(res))
